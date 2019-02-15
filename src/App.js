@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Blog from './containers/Blog/Blog';
 
+// https://jsonplaceholder.typicode.com/
 class App extends Component {
   render() {
     return (
