@@ -5,6 +5,9 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
+
+
 // global, will be shared in all files in the project
 // register a new interceptor
 // it fires on every request in every files
