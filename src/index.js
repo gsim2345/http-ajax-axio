@@ -7,6 +7,9 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
+// setting headerfor requests. In the request object in headers these will appear in every request from the whole application:
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 // global, will be shared in all files in the project
 // register a new interceptor
