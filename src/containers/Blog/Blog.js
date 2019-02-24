@@ -16,8 +16,9 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Route path="/" exact render={() => <h1>Home</h1>}/>
-                <Route path="/" render={() => <h1>Home 2</h1>}/>
+                {/*<Route path="/" exact render={() => <h1>Home</h1>}/>
+                <Route path="/" render={() => <h1>Home 2</h1>}/>*/}
+                <Route path="/" exact component={Posts}/>
             </div>
             // exact is a boolian property, and defines that we want the exact path "/", because by default it's first character, so everything that starts with "/" will be routed here
             // with exact, it will only be rendered to path="/"
