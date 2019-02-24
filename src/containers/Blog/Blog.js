@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Posts from './Posts/Posts';
 import './Blog.css';
+import {Route} from 'react-router-dom';
 
 class Blog extends Component {
 
@@ -15,8 +16,12 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Posts />
+                <Route path="/" exact render={() => <h1>Home</h1>}/>
+                <Route path="/" render={() => <h1>Home 2</h1>}/>
             </div>
+            // exact is a boolian property, and defines that we want the exact path "/", because by default it's first character, so everything that starts with "/" will be routed here
+            // with exact, it will only be rendered to path="/"
+            // without exact it will be rendered to every path that starts with "/"
         );
     }
 }
