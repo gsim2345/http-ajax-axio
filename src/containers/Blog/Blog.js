@@ -16,7 +16,9 @@ class Blog extends Component {
                         <ul>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to={{
-                                pathname: "new-post",
+                                pathname: "/new-post",
+                                // in case you want to attach the path to the current url:
+                                //pathname: this.props.match.url + '/new-post'
                                 //hash: #submit - fx. it jumps to that part
                                 //search:'?quick-submit=true' - fx. query params
                             }}>New Post</Link></li>
