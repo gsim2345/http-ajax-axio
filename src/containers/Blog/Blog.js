@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 import './Blog.css';
-import {Route, Link } from 'react-router-dom';
+import {Route, NavLink } from 'react-router-dom';
 
 
 class Blog extends Component {
@@ -10,18 +10,29 @@ class Blog extends Component {
     render () {
         return (
             // Link to="/" - the to property is like path, but handles event.preventDefault as well. On Click it won't take you to the link. Can configure with params where the link takes us.
+            // The NavLink component add a 'class="acive"' to the active link
+            // with activeClassName we can define the active class name ourselves
+            // activeStyle add inline styling
             <div className="Blog">
                 <header>
                     <nav>
                         <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to={{
+                            <li><NavLink 
+                            to="/" 
+                            exact 
+                            activeClassName="active"
+                            activeStyle={{
+                                color: '#fa923f',
+                                textDecoration: 'underline'
+                            }}
+                            >Home</NavLink></li>
+                            <li><NavLink to={{
                                 pathname: "/new-post",
                                 // in case you want to attach the path to the current url:
                                 //pathname: this.props.match.url + '/new-post'
                                 //hash: #submit - fx. it jumps to that part
                                 //search:'?quick-submit=true' - fx. query params
-                            }}>New Post</Link></li>
+                            }}>New Post</NavLink></li>
                         </ul>
                     </nav>
                 </header>
