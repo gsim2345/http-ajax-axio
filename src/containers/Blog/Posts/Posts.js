@@ -45,6 +45,10 @@ class Posts extends Component {
                 key={post.id} 
                 title={post.title} 
                 author={post.author}
+                //we can pass on the routing props with the spread operator
+                {...this.props}
+                // or we can simply pass on a selected one:
+                match={this.props.match}
                 clicked={() => this.postSelectedHandler(post.id)}/>
             });
         }
