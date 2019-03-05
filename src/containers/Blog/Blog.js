@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
 import './Blog.css';
 import {Route, NavLink } from 'react-router-dom';
 
@@ -40,6 +41,8 @@ class Blog extends Component {
                 <Route path="/" render={() => <h1>Home 2</h1>}/>*/}
                 <Route path="/" exact component={Posts}/>
                 <Route path="/new-post" component={NewPost}/>
+                {/* dynamic route is coming as last, as "new-post could be interpreted as an id*/}
+                <Route path="/:id" exact component={FullPost}/>
             </div>
             // exact is a boolian property, and defines that we want the exact path "/", because by default it's first character, so everything that starts with "/" will be routed here
             // with exact, it will only be rendered to path="/"
