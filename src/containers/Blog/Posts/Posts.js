@@ -44,7 +44,7 @@ class Posts extends Component {
             posts = this.state.posts.map(post => {
                 return (
                     //moved key from Post element to Link, as it has to be at the outer element
-                <Link to={'/posts/' + post.id} key={post.id}>
+                <Link to={'/' + post.id} key={post.id}>
                     <Post 
                     title={post.title} 
                     author={post.author}
