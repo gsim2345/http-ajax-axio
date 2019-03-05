@@ -42,7 +42,8 @@ class Blog extends Component {
                 <Route path="/" exact component={Posts}/>
                 <Route path="/new-post" component={NewPost}/>
                 {/* dynamic route is coming as last, as "new-post could be interpreted as an id*/}
-                <Route path="/:id" exact component={FullPost}/>
+                {/* But it's not ideal at the last place ether, because it can be anything, it is also interpreted as "/new-post", so it appears whenever "/new-post" appear. One solution can be:  */}
+                <Route path="/posts/:id" exact component={FullPost}/>
             </div>
             // exact is a boolian property, and defines that we want the exact path "/", because by default it's first character, so everything that starts with "/" will be routed here
             // with exact, it will only be rendered to path="/"
