@@ -24,7 +24,14 @@ class FullPost extends Component {
             }
             
         }
-    }
+
+        // Example retreiving query params: 
+        // the search string: props.location.search
+        // const query = new URLSearchParams(this.props.location.search);
+        /* for (let param of query.entries()) {
+            console.log(param); // yields ['start', '5']
+        } */
+        
 
     deletePostHandler = () => {
         axios.delete('/posts/'+ this.props.id)
