@@ -8,12 +8,15 @@ class FullPost extends Component {
         loadedPost: null
     }
 
-    // we want to update whenever we get new props
-    componentDidUpdate() {
-        if (this.props.id) {
+    // we turn componentDidUpdate to componentDidMount, as we don't updating anymore, just getting added or removed from DOM
+    componentDidMount() {
+        // in props we can see the route params
+        console.log(this.props);
+        // we extract the id from the route params:
+        if (this.props.match.params.id) {
             // if no data in loadedpost, or if there is already some data in loadedPost, and the id is not the same as earlier id
-            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
-                axios.get('/posts/'+ this.props.id)
+            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id)) {
+                axios.get('/posts/'+ this.props.match.params.id)
             .then(response => {
                 //console.log(response);
                 this.setState({loadedPost: response.data});
