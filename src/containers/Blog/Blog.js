@@ -7,6 +7,10 @@ import {Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 class Blog extends Component {
 
+    state = {
+        auth: false
+    }
+
     render () {
         return (
             // Link to="/" - the to property is like path, but handles event.preventDefault as well. On Click it won't take you to the link. Can configure with params where the link takes us.
@@ -40,7 +44,9 @@ class Blog extends Component {
                 <Route path="/" render={() => <h1>Home 2</h1>}/>*/}
                 
                 <Switch>
-                    <Route path="/new-post" component={NewPost}/>   
+                    {/* A Guard */}
+                    {this.state.auth ? <Route path="/new-post" component={NewPost}/> : null}
+                    {/* If the auth is false, goes to the next one that passes, which is Redirect, so it gets redirected to /posts*/}
                     <Route path="/posts" component={Posts}/>
                     <Redirect from="/" to="/posts"/>
                     {/* We can use from in redirect only in the switch statement*/}
