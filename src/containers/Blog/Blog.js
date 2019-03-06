@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
 import './Blog.css';
 import {Route, NavLink, Switch } from 'react-router-dom';
 
@@ -19,7 +18,7 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li><NavLink 
-                            to="/" 
+                            to="/posts/" 
                             exact 
                             activeClassName="active"
                             activeStyle={{
@@ -39,14 +38,14 @@ class Blog extends Component {
                 </header>
                 {/*<Route path="/" exact render={() => <h1>Home</h1>}/>
                 <Route path="/" render={() => <h1>Home 2</h1>}/>*/}
-                <Route path="/" exact component={Posts}/>
+                
                 <Switch>
-                    <Route path="/:id" exact component={FullPost}/>
-                    <Route path="/new-post" component={NewPost}/>
+                    <Route path="/new-post" component={NewPost}/>   
+                    <Route path="/posts" component={Posts}/>
                 </Switch>
-                {/* dynamic route is coming as last, as "new-post could be interpreted as an id*/}
-                {/* But it's not ideal at the last place ether, because it can be anything, it is also interpreted as "/new-post", so it appears whenever "/new-post" appear. One solution can be: at /posts to route */}
-                {/* Other solution: using the Switch component . This loads only the first one that matches. Only one route gets loaded, so they need to be in the right order.  */}
+                {/* We remove exact from "/" path, so the nested route in the Posts can work (otherwise will never render, it stops at "/") */}
+                {/* If we remove exact, "/new-post" has to come first */}
+                
             </div>
             // exact is a boolian property, and defines that we want the exact path "/", because by default it's first character, so everything that starts with "/" will be routed here
             // with exact, it will only be rendered to path="/"
