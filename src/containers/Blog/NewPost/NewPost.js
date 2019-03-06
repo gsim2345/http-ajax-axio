@@ -15,9 +15,10 @@ class NewPost extends Component {
         console.log(this.props);
         // another way to add guard: 
         // if user is not authenticated: 
+        /*
         if (!this.props.auth) {
             this.props.history.replace("/posts");
-          }
+          }*/
         // but for security reasons (child components get their componentDidMount earlier, and maybe are reaching out to web, or do something else we don't want) the guard at rendering is preferable. 
         
     }
