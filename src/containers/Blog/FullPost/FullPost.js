@@ -12,10 +12,32 @@ class FullPost extends Component {
     componentDidMount() {
         // in props we can see the route params
         console.log(this.props);
+
+        this.loadData();
+    }
+
+
+    // if we are loading a component that we already loaded, it won't rerender the whole component, (like here with Fullpost, if we already rendered once, won't be rendered again), so componentDidMount won't run again, so we won't send a new request for the server. 
+    // instead use  componentDidUpdate(), that will be executed again
+    // we call loadData in both 
+    // IF WE USE ROUTING, ALWAYS NEEDS TO USE THAT, because it won't mount the component again.
+    componentDidUpdate() {
+        this.loadData();
+    }
+
+    deletePostHandler = () => {
+        axios.delete('/posts/'+ this.props.match.params.id)
+        .then(response => {
+            console.log(response);
+        });
+    }
+
+    loadData() {
         // we extract the id from the route params:
         if (this.props.match.params.id) {
             // if no data in loadedpost, or if there is already some data in loadedPost, and the id is not the same as earlier id
-            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id)) {
+            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id)) {
+                // we need to switch to != because this.props.match.params.id is a string, and the other is a number OR we leave the strict equality, and turn this.props.match.params.id into an integer with + in front of
                 axios.get('/posts/'+ this.props.match.params.id)
             .then(response => {
                 //console.log(response);
@@ -33,17 +55,10 @@ class FullPost extends Component {
         } */
     }
 
-    deletePostHandler = () => {
-        axios.delete('/posts/'+ this.props.id)
-        .then(response => {
-            console.log(response);
-        });
-    }
-
     render () {
         let post = <p style={{textAlign: 'center'}}>Please select a Post!</p>;
         //if this.props.id returns true
-        if(this.props.id) {
+        if(this.props.match.params.id) {
             post = <p style={{textAlign: 'center'}}>Loading...!</p>;
         }
         

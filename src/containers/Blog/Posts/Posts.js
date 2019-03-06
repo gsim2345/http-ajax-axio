@@ -44,7 +44,6 @@ class Posts extends Component {
         let posts = <p style={{textAlign: 'center'}}
         >Something went wrong!</p>;
         // if error is false
-        console.log(this.props.match.url);
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
                 return (
