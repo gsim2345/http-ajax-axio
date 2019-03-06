@@ -44,8 +44,9 @@ class Blog extends Component {
                 <Route path="/" render={() => <h1>Home 2</h1>}/>*/}
                 
                 <Switch>
-                    {/* A Guard */}
-                    {this.state.auth ? <Route path="/new-post" component={NewPost}/> : null}
+                    {/* A Guard - for security reasons (child components get their componentDidMount earlier, and maybe are reaching out to web, or do something else we don't want) the guard at rendering (here) is preferable. */}
+                    {/*this.state.auth ? <Route path="/new-post" component={NewPost}/> : null*/}
+                    <Route path="/new-post" component={(props) => <NewPost {...props} auth={this.state.auth} />} />
                     {/* If the auth is false, goes to the next one that passes, which is Redirect, so it gets redirected to /posts*/}
                     <Route path="/posts" component={Posts}/>
                     <Redirect from="/" to="/posts"/>
