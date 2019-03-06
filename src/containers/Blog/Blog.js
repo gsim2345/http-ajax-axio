@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
+// with lazy loading we want to load it only when needed, not immediately import. 
+// we import in a different way
+//import NewPost from './NewPost/NewPost';
 import Posts from './Posts/Posts';
-import NewPost from './NewPost/NewPost';
 import './Blog.css';
 import {Route, NavLink, Switch, Redirect } from 'react-router-dom';
+
+import asyncComponent from '../../hoc/asyncComponent';
+const asyncNewPost = asyncComponent( () => {
+    // dynamic import syntax. Whatever comes between the parentheses, will only be imported when this function gets executed. And that will only be executed, when asyncNewPost will be rendered 
+    return import('./NewPost/NewPost');
+});
 
 
 class Blog extends Component {
 
     state = {
-        auth: false
+        auth: true
     }
 
     render () {
@@ -45,7 +53,7 @@ class Blog extends Component {
                 
                 <Switch>
                     {/* A Guard - for security reasons (child components get their componentDidMount earlier, and maybe are reaching out to web, or do something else we don't want) the guard at rendering (here) is preferable. */}
-                    {this.state.auth ? <Route path="/new-post" component={NewPost}/> : null}
+                    {this.state.auth ? <Route path="/new-post" component={asyncNewPost}/> : null}
                     {/*<Route path="/new-post" component={(props) => <NewPost {...props} auth={this.state.auth} />} /> */}
                     {/* If the auth is false, goes to the next one that passes, which is Redirect, so it gets redirected to /posts*/}
                     <Route path="/posts" component={Posts}/>
