@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 import './Blog.css';
-import {Route, NavLink, Switch } from 'react-router-dom';
+import {Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 
 class Blog extends Component {
@@ -42,6 +42,9 @@ class Blog extends Component {
                 <Switch>
                     <Route path="/new-post" component={NewPost}/>   
                     <Route path="/posts" component={Posts}/>
+                    <Redirect from="/" to="/posts"/>
+                    {/* We can use from in redirect only in the switch statement*/}
+                    {/*<Route path="/" component={Posts}/>*/}
                 </Switch>
                 {/* We remove exact from "/" path, so the nested route in the Posts can work (otherwise will never render, it stops at "/") */}
                 {/* If we remove exact, "/new-post" has to come first */}
