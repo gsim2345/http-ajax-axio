@@ -49,9 +49,16 @@ class Blog extends Component {
                     {/*<Route path="/new-post" component={(props) => <NewPost {...props} auth={this.state.auth} />} /> */}
                     {/* If the auth is false, goes to the next one that passes, which is Redirect, so it gets redirected to /posts*/}
                     <Route path="/posts" component={Posts}/>
-                    <Redirect from="/" to="/posts"/>
+
+
+                    {/* Redirect is already handling 404 - unknown routes*/}
+                    {/*<Redirect from="/" to="/posts"/> */}
+                    {/* OR: At 404 - unknown routes - simply leave out the path: (Both won't work together though. Either "/" or without path, because both catches all. )*/}
+                    {/* <Route component={Posts}/> */}
+                    {/* OR render sg for any unknow routes - has to come as last */}
+                    <Route render={() => <h1>Not found</h1>}/>
+
                     {/* We can use from in redirect only in the switch statement*/}
-                    {/*<Route path="/" component={Posts}/>*/}
                 </Switch>
                 {/* We remove exact from "/" path, so the nested route in the Posts can work (otherwise will never render, it stops at "/") */}
                 {/* If we remove exact, "/new-post" has to come first */}
