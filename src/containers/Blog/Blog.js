@@ -55,6 +55,7 @@ class Blog extends Component {
                 {/*<Route path="/" exact render={() => <h1>Home</h1>}/>
                 <Route path="/" render={() => <h1>Home 2</h1>}/>*/}
                 
+                {/* If we are not using switch, all of the routes that fits get loaded at once. Fx. if we have "/courses", and "courses/course", both gets loaded, not only the one. */}
                 <Switch>
                     {/* A Guard - for security reasons (child components get their componentDidMount earlier, and maybe are reaching out to web, or do something else we don't want) the guard at rendering (here) is preferable. */}
                     {this.state.auth ? 
